@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Item1 from '../assets/images/service-slide-1.jpg';
 import Item2 from '../assets/images/gulet.jpeg';
 import Item3 from '../assets/images/home-banner.jpg';
@@ -16,6 +16,9 @@ import 'swiper/css/effect-fade';
 import "swiper/css/pagination";
 // import 'swiper/swiper-bundle.min.css';
 
+import config from '../config';
+import axios from 'axios';
+
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectFade, Thumbs, FreeMode, Pagination } from 'swiper/modules';
@@ -25,6 +28,8 @@ function ServiceTabsPanel() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
     const mainSwiperRef = useRef(null);
+    const [services, setServices] = useState([]);
+    const [imageArray, setImageArray] = useState([]);
 
     const serviceItems = [
         {
@@ -59,14 +64,42 @@ function ServiceTabsPanel() {
         },
     ];
 
-    const imageArray = [
-        Item1,
-        Item2,
-        Item3,
-        Item4,
-        Item5
-    ];
+    // const imageArray = [
+    //     Item1,
+    //     Item2,
+    //     Item3,
+    //     Item4,
+    //     Item5
+    // ];
     
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await axios.get(`${config.BASE_URL}/api/admin/get-services`, { withCredentials: true });
+                var images = [];
+                if (Array.isArray(response.data)) {
+                    setServices(response.data);  // Set the fetched projects to state
+
+                    Promise.all(response.data.map((item) => {
+                        images.push(item.featuredImage);
+                    }));
+
+                    setImageArray(images);
+                } else {
+                    console.log('Unexpected response format');
+                }
+                // setProjects(response.data); // Set the fetched projects to state
+            } catch (err) {
+                console.log('Failed to fetch services');
+            }
+        };
+
+        fetchServices();
+    }, []);
+
+
+    console.log("services: ", services);
 
     return (
         <>
@@ -75,7 +108,7 @@ function ServiceTabsPanel() {
                 <div className="service_tabs_wrapper position-relative">
                     {/* <div className='service_tab_items hideonmobile'> */}
                     <div className='service_tab_items' style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                        {serviceItems.map((item, index) => (
+                        {services.map((item, index) => (
                             <div
                                 className={`service_tab_item ${activeIndex === index ? 'active' : ''}`} // Add 'active' class if current
                                 key={index}
@@ -94,7 +127,7 @@ function ServiceTabsPanel() {
                                 </div>
                                 <div className='service_desc'>
                                     <span className='icon'>
-                                        <img src={item.icon} alt={`${item.title} Icon`} />
+                                        <img src={TabArrow} alt={`${item.title} Icon`} />
                                     </span>
                                     <span className='text'>
                                         <strong>{item.description}</strong>
@@ -219,11 +252,11 @@ function ServiceTabsPanel() {
                             {/* Swiper Slides */}
                             {imageArray.map((image, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={image} alt={`Slide ${index + 1}`} className='hideonmobile' style={{ objectFit: 'contain' }} />
+                                    <img src={config.BASE_URL + image} alt={`Slide ${index + 1}`} className='hideonmobile' style={{ objectFit: 'contain' }} />
                                     <div className='showonmobile service-tab-mobile'>
                                         <div className='wrapper'>
                                             <div className='tab_content_heading'>
-                                                <h3> {serviceItems[index].title}</h3>
+                                                <h3> {services[index].title}</h3>
                                             </div>
                                             <div className='tab_content_wrapper'>
                                                 <ul>
