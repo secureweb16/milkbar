@@ -20,7 +20,7 @@ import AddBooking from './pages/admin/AddBooking';
 import ViewBooking from './pages/admin/ViewBooking';
 import UpdateBooking from './pages/admin/UpdateBooking';
 import BrandSec from './pages/admin/BrandSection';
-import ProjectList from './pages/admin/ServiceList';
+import ProjectList from './pages/admin/ProjectList';
 import Footer from './components/Footer';
 import Branding from './pages/Branding';
 

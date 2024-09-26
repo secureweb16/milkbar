@@ -30,6 +30,7 @@ function ServiceTabsPanel() {
     const mainSwiperRef = useRef(null);
     const [services, setServices] = useState([]);
     const [imageArray, setImageArray] = useState([]);
+    const tabRef = useRef(null);
 
     const serviceItems = [
         {
@@ -82,7 +83,7 @@ function ServiceTabsPanel() {
                     setServices(response.data);  // Set the fetched projects to state
 
                     Promise.all(response.data.map((item) => {
-                        images.push(item.featuredImage);
+                        images.push({image: item.featuredImage, des: item.description});
                     }));
 
                     setImageArray(images);
@@ -98,8 +99,34 @@ function ServiceTabsPanel() {
         fetchServices();
     }, []);
 
+    useEffect(() => {
+        if (tabRef.current) {
+            const activeItem = tabRef.current.children[activeIndex];
+            console.log('activeItem',activeItem);
+            if (activeItem) {
+                const tabRect = tabRef.current.getBoundingClientRect();
+                const itemRect = activeItem.getBoundingClientRect();
+                const offset = itemRect.left + itemRect.width / 2 - tabRect.left - tabRect.width / 2;
 
-    console.log("services: ", services);
+                tabRef.current.scrollTo({
+                    left: offset,
+                    behavior: 'smooth', // Optional: smooth scrolling
+                });
+            }
+        }
+    }, [activeIndex]);
+
+    const renderDescription = (des) => {
+        var words = des.split(' ');
+        words = words.slice(0, 3).join(' ')
+        const removed = des.replace(words, "");
+        
+        return `<strong>${words}</strong> ${removed}`;
+    }
+
+    const handleSlideChange = (swiper) => {
+        setActiveIndex(swiper.activeIndex);
+    };
 
     return (
         <>
@@ -107,7 +134,7 @@ function ServiceTabsPanel() {
                 <h6 className="text-uppercase letter-spacing-5 text-left">Services</h6>
                 <div className="service_tabs_wrapper position-relative">
                     {/* <div className='service_tab_items hideonmobile'> */}
-                    <div className='service_tab_items' style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <div className='service_tab_items' ref={tabRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                         {services.map((item, index) => (
                             <div
                                 className={`service_tab_item ${activeIndex === index ? 'active' : ''}`} // Add 'active' class if current
@@ -130,7 +157,7 @@ function ServiceTabsPanel() {
                                         <img src={TabArrow} alt={`${item.title} Icon`} />
                                     </span>
                                     <span className='text'>
-                                        <strong>{item.description}</strong>
+                                        <p dangerouslySetInnerHTML={{ __html: renderDescription(item.description) }} />
                                     </span>
                                 </div>
                             </div>
@@ -228,7 +255,7 @@ function ServiceTabsPanel() {
                             modules={[FreeMode, EffectFade, Navigation, Pagination, Thumbs]}
                             centeredSlides={false}
                             pagination={{
-                                type: 'progressbar',
+                                type: 'progressbar',                                
                                 el: '.swiper-pagination'
                             }}
                             navigation={{ nextEl: ".service-arrow-right", prevEl: ".service-arrow-left" }}
@@ -248,26 +275,29 @@ function ServiceTabsPanel() {
                             
                             className="mySwiper2"
                             onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
+                            onSlideChange={handleSlideChange}
                         >
                             {/* Swiper Slides */}
-                            {imageArray.map((image, index) => (
+                            {imageArray.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={config.BASE_URL + image} alt={`Slide ${index + 1}`} className='hideonmobile' style={{ objectFit: 'contain' }} />
+                                    <img src={config.BASE_URL + item.image} alt={`Slide ${index + 1}`} className='hideonmobile' style={{ objectFit: 'contain' }} />
                                     <div className='showonmobile service-tab-mobile'>
                                         <div className='wrapper'>
                                             <div className='tab_content_heading'>
                                                 <h3> {services[index].title}</h3>
                                             </div>
                                             <div className='tab_content_wrapper'>
-                                                <ul>
+                                                {/* <ul>
                                                     <li>brand direction</li>
                                                     <li>logo + icon design</li>
                                                     <li>photography + videography  direction</li>
                                                     <li>copywriting</li>
-                                                </ul>
+                                                </ul> */}
+
+                                                <p dangerouslySetInnerHTML={{ __html: renderDescription(item.des) }} />
                                             </div>
                                         </div>   
-                                        <div className='mobile_tab_content showonmobile' style={{ backgroundImage: `url(${Item1})` }}>
+                                        <div className='mobile_tab_content showonmobile' style={{ backgroundImage: `url(${config.BASE_URL + item.image})` }}>
                                         </div>
                                     </div>
                                 </SwiperSlide>

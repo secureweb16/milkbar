@@ -110,11 +110,11 @@ function UpdateProject() {
             });
 
             // Update the project state with the response data
-            if (Array.isArray(response.data)) {
+            // if (Array.isArray(response.data)) {
                 setProject(response.data.project); // Assuming the response includes the updated project
-            } else {
-                setError('Unexpected response format');
-            }
+            // } else {
+            //     setError('Unexpected response format');
+            // }
             if (fileInputRef.current) {
                 fileInputRef.current.value = ''; // Clear the file input for new images
             }

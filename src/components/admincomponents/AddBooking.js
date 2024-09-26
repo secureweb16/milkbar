@@ -52,11 +52,7 @@ function AddBooking() {
         navigate(`/admin/project/${projectId}`); // Redirect to dashboard after successful addition
       }
     } catch (err) {
-<<<<<<< HEAD
       setError(err.response?.data?.message || 'Failed to add title image section');
-=======
-      setError(err.response?.data?.message || 'Failed to add booking');
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
     }
   };
 

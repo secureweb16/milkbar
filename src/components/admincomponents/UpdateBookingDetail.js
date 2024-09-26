@@ -20,11 +20,7 @@ function UpdateBooking() {
                 setBooking(response.data);
                 
             } catch (err) {
-<<<<<<< HEAD
                 setError('Failed to fetch title image section details');
-=======
-                setError('Failed to fetch booking details');
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
             }
         };
 
@@ -60,17 +56,10 @@ function UpdateBooking() {
             if (imageFileInputRef.current) {
                 imageFileInputRef.current.value = ''; // Clear the image file input
             }
-<<<<<<< HEAD
             setSuccessMessage('Title image section updated successfully!');
         } catch (err) {
             console.log(err);
             setError('Failed to update title image section');
-=======
-            setSuccessMessage('Booking updated successfully!');
-        } catch (err) {
-            console.log(err);
-            setError('Failed to update booking');
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
         }
     };
 
@@ -107,11 +96,7 @@ function UpdateBooking() {
                     </div>
                     
                     <div className="update_btn_wrap">
-<<<<<<< HEAD
                     <button className="update_btn" type="submit">Update</button>
-=======
-                    <button className="update_btn" type="submit">Update Booking</button>
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
                     </div>
                     {successMessage && <p className="success-message">{successMessage}</p>}
                     {error && <p className="error-message">{error}</p>}

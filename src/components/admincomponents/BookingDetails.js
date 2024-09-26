@@ -17,11 +17,7 @@ function BookingDetails() {
                 setBooking(response.data); // Set the fetched project details
             } catch (err) {
                 // console.log(err);
-<<<<<<< HEAD
                 setError('Failed to fetch title image section details');
-=======
-                setError('Failed to fetch project details');
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
             } finally {
                 setLoading(false);
             }
@@ -36,11 +32,7 @@ function BookingDetails() {
             // Navigate back to the project list or show a success message
             navigate(-1);
         } catch (err) {
-<<<<<<< HEAD
             setError('Failed to delete.');
-=======
-            setError('Failed to delete the project');
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
         }
     };
 
@@ -57,11 +49,7 @@ function BookingDetails() {
                     <div className="projects">
                         <div className="projects-inner">
                             <div className="detail_item">
-<<<<<<< HEAD
                                 <h2>Title</h2>
-=======
-                                <h2>Booking Title</h2>
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
                                 <div className="detail_item_inner">
                                     <p>{booking?.title}</p>
                                 </div>

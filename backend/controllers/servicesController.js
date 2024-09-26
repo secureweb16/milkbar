@@ -58,11 +58,10 @@ exports.deleteService = async (req, res) => {
          // Delete associated images from the file system
         
         const fs = require('fs');
-        deletedService.images.forEach(imagePath => {
-            fs.unlink(`./public${imagePath}`, err => {
-                if (err) console.error('Failed to delete image:', imagePath);
-            });
+        fs.unlink(`./public${deletedService.featuredImage}`, err => {
+            if (err) console.error('Failed to delete image:', imagePath);
         });
+        
         res.status(200).json({ message: 'Service deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Failed to delete Service' });

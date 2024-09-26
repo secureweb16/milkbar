@@ -78,10 +78,7 @@ function FeaturedWorkSlider({projects}){
                             centeredSlides={true}
                             spaceBetween={70}
                             slidesPerView={3.8}
-<<<<<<< HEAD
                             speed={500}
-=======
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
                             navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
                             scrollbar={{ draggable: true, el: '.swiper-custom-scrollbar' }}
                             loop={true}
@@ -106,11 +103,7 @@ function FeaturedWorkSlider({projects}){
                             <SwiperSlide>
                                 <div className="common_work_slide  position-relative">
                                     {project?.featuredImage && (
-<<<<<<< HEAD
                                     <img src={`${config.BASE_URL}${project?.featuredImage}`} alt="Featured" className="position-absolute h-100 w-100 object-fit-cover" />
-=======
-                                    <img src={`${config.BASE_URL}${project?.featuredImage}`} alt="Featured" className="position-absolute top-0 start-0 h-100 w-100 object-fit-cover" />
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
                                     )}
                                     {/* <img src={SliderItem1} alt="Image" className="position-absolute top-0 start-0 h-100 w-100 object-fit-cover" /> */}
                                     <div className="common_work_slide_text position-absolute w-100 h-100">
@@ -130,11 +123,7 @@ function FeaturedWorkSlider({projects}){
                                             <circle cx="22.5" cy="22.5" r="11.25" fill="white" fill-opacity="0.1"/>
                                             <circle cx="22.5" cy="22.5" r="11" stroke="white" stroke-opacity="0.5" stroke-width="0.5"/>
                                             </svg>
-<<<<<<< HEAD
                                                                        
-=======
-                                            <img src={WorkSlideLogo1} alt="logo" />                                
->>>>>>> 7fcad1be3a79880e0b4f7b1dc07ed8c54c852e58
                                         </div>
                                         <div className="text-center d-flex justify-content-center project_link">
                                             <Link to={`/project/${project?._id}`} className="text-white font-12 text-uppercase font-messina letter-spacing-5 underline_link">View Project</Link>
