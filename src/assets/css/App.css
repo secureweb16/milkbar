@@ -457,8 +457,12 @@ header.sticky a.header_logo img {
   max-height: 17px;
 }
 header .header_top nav {
-  margin-top: 10px;
-  padding: 0 30px px;
+  /* margin-top: 10px;
+  padding: 0 30px px; */
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
 }
 header .header_top nav > ul {
   margin: 0;
@@ -585,15 +589,21 @@ header .header_top nav > ul > li.expanded img {
 .mobile_menu_wrapper nav ul {
   flex-direction: column;
   padding: 0;
-  gap: 10px;
+  gap: 15px;
 }
 .mobile_menu_wrapper nav ul li {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+}
+.mobile_menu_wrapper li a {
+  font-size: 14px;
+  line-height: 20px;
 }
 .mobile_menu_wrapper .menuicon {
   display: block;
   width: 18px;
+  margin-left: 5px;
 }
 .mobile_menu_wrapper .dropdown_menu {
   position: static;
@@ -608,7 +618,8 @@ header .header_top nav > ul > li.expanded img {
   opacity: 1;
   visibility: visible;
   height: auto;
-  padding: 0 0 0 10px;
+  padding: 15px;
+  backdrop-filter: none;
 }
 .close_menu_bar {
   position: absolute;
@@ -1477,7 +1488,7 @@ a.follow_button {
 /* Work Page */
 .project_list_wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   row-gap: 40px;
   column-gap: 10px;
 }
@@ -2684,7 +2695,12 @@ border: none;
 
 
 /* Responsive Css */
-
+@media (min-width:1500px){
+  .project_list_wrapper {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 30px;
+  }
+}
 @media (min-width:768px){
   
 .service_tab_items {
@@ -2799,20 +2815,23 @@ border: none;
     display: block;
   }
   .hideonmobile {
-      display: none;
-    }
-    header .header_top nav {
-      display: none;
-    }
-    .header_contact {
-        margin: 0 20px 0 auto;
-    }
-    .hamburger {
-      display: block;
-    }
-    .service-tab-mobile {
-      width: 100%;
-      margin: 25px 0 86px;
+    display: none;
+  }
+  header .header_top nav {
+    display: none;
+  }
+  .header_contact {
+      margin: 0 20px 0 auto;
+  }
+  .hamburger {
+    display: block;
+  }
+  .service-tab-mobile {
+    width: 100%;
+    margin: 25px 0 86px;
+  }
+  .main-header {
+    z-index: 11;
   }
   .services_tabs_panel > h6 {
     font-size: 12px;

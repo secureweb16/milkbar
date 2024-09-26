@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import MenuArrow from '../assets/images/down_arrow_icon.svg';
 
-function Navigation() {
+function Navigation({closeMenu}) {
     const [activeItem, setActiveItem] = useState('');
     const [expandedItem, setExpandedItem] = useState('');
     const handleItemClick = (path) => {
         setActiveItem(path);
-        setExpandedItem('');
-    };
-    const handleMenuIconClick = (path) => {
         setExpandedItem(expandedItem === path ? '' : path);
     };
+    // const handleMenuIconClick = (path) => {
+    //     setExpandedItem(expandedItem === path ? '' : path);
+    // };
 
     return (
         <>
@@ -25,7 +25,8 @@ function Navigation() {
                         >
                             Services
                         </Link>
-                        <span className="menuicon" onClick={() => handleMenuIconClick('/services')}>
+                        {/* <span className="menuicon" onClick={() => handleMenuIconClick('/services')}> */}
+                        <span className="menuicon">
                             <img src={MenuArrow} alt="menu" />
                         </span>
                         <div className="dropdown_menu">
@@ -34,7 +35,7 @@ function Navigation() {
                                     <Link
                                         to="/social-media"
                                         className="text-uppercase letter-spacing-5 font-12 font-messina text-white"
-                                        onClick={() => handleItemClick('/social-media')}
+                                        onClick={() => {handleItemClick('/social-media'); closeMenu();}}
                                     >
                                         Social Media
                                     </Link>
@@ -43,7 +44,7 @@ function Navigation() {
                                     <Link
                                         to="/branding"
                                         className="text-uppercase letter-spacing-5 font-12 font-messina text-white"
-                                        onClick={() => handleItemClick('/branding')}
+                                        onClick={() => {handleItemClick('/branding'); closeMenu();}}
                                     >
                                         Branding
                                     </Link>
@@ -52,7 +53,7 @@ function Navigation() {
                                     <Link
                                         to="/social-media"
                                         className="text-uppercase letter-spacing-5 font-12 font-messina text-white"
-                                        onClick={() => handleItemClick('/social-media')}
+                                        onClick={() => {handleItemClick('/social-media'); closeMenu();}}
                                     >
                                         Hospitality
                                     </Link>
@@ -64,7 +65,7 @@ function Navigation() {
                         <Link
                             to="/work"
                             className="text-uppercase letter-spacing-5 font-12 font-messina text-white"
-                            onClick={() => handleItemClick('/work')}
+                            onClick={() => {handleItemClick('/work'); closeMenu();}}
                         >
                             Work
                         </Link>
@@ -73,7 +74,7 @@ function Navigation() {
                         <Link
                             to="/contact"
                             className="text-uppercase letter-spacing-5 font-12 font-messina text-white"
-                            onClick={() => handleItemClick('/contact')}
+                            onClick={() => {handleItemClick('/contact'); closeMenu();}}
                         >
                             Contact
                         </Link>
@@ -82,7 +83,7 @@ function Navigation() {
                         <Link
                             to="/about"
                             className="text-uppercase letter-spacing-5 font-12 font-messina text-white"
-                            onClick={() => handleItemClick('/about')}
+                            onClick={() => {handleItemClick('/about'); closeMenu();}}
                         >
                             About
                         </Link>

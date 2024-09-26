@@ -73,6 +73,9 @@ function Header() {
     const handleCloseMenuClick = () => {
         setIsSidebarOpen(false);
     };
+    const closeMenuOnLinkClick = () => {
+        setIsSidebarOpen(false);
+    };
 
     return (
         <>
@@ -102,7 +105,7 @@ function Header() {
                             <span className='line'></span>
                             <span className='line'></span>
                         </div>
-                    <Navigation />
+                    <Navigation closeMenu={closeMenuOnLinkClick}/>
                     </div>
                 </div>
             </header>            
