@@ -26,7 +26,24 @@ const corsOptions = {
 };
 
 // Use CORS middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+// const allowedOrigins = ["http://107.22.47.136", "http://107.22.47.136:3000"];
+
+// // CORS options
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//             callback(null, true); // Allow request if origin is in the list or it's undefined (for same-origin requests)
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     credentials: true, // Allow cookies and credentials
+// };
+
+// // Use CORS middleware
+// app.use(cors(corsOptions));
 
 
 // Connect to MongoDB
